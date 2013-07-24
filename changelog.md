@@ -1,5 +1,6 @@
 changelog.md
 
-## 1.0.3
+## 1.0.4
 
-* Fix bug where jquery-1.9.1 removed some features used by kcfinder. Add jquery-migrate-rails to solve the issue.
+* Use data_file_path instead of link_to_path
+
