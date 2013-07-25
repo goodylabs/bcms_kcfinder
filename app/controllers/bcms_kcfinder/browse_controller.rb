@@ -96,7 +96,7 @@ module BcmsKcfinder
             name: file.name ? file.name : "",
             
             size: file.size_in_bytes,
-            path: file.data_file_path,
+            path: file.file.data_file_path,
             mtime: file.updated_at.to_i,
             date: file.created_at.strftime("%m/%d/%Y %I:%M %p"),
             readable: true,

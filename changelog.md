@@ -1,6 +1,6 @@
 changelog.md
 
-## 1.0.4
+## 1.0.5
 
-* Use data_file_path instead of link_to_path
+* Fix call to data_file_path
 
