@@ -1,6 +1,5 @@
 changelog.md
 
-## 1.0.5
+## 1.0.6
 
-* Fix call to data_file_path
-
+* Only use data_file_path for images
