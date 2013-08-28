@@ -65,10 +65,10 @@ module BcmsKcfinder
     LINKABLE_TYPES = ["Cms::Page", "Cms::Attachment"]
 
     def linkable_children
-      child_pages = self.node.children.collect do |section_node|
-        section_node.node if LINKABLE_TYPES.include?(section_node.node_type)
-      end
-      child_pages.compact
+      ancestry = self.node.children.first.ancestry
+      pages = Cms::Page.find_by_sql("SELECT * from cms_section_nodes n, cms_pages p where n.ancestry = '#{ancestry}' and n.node_type = 'Cms::Page' and p.id = n.node_id and p.deleted=false;")
+      attachments = Cms::Attachment.find_by_sql("SELECT * from cms_section_nodes n, cms_attachments p where n.ancestry = '#{ancestry}' and n.node_type = 'Cms::Attachment' and p.id = n.node_id and p.deleted=false;")
+      (pages + attachments).compact
     end
   end
 end

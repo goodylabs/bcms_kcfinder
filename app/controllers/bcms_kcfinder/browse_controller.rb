@@ -89,6 +89,7 @@ module BcmsKcfinder
     end
 
     def render_files(files)
+      paths = Cms::Attachment.find_by_sql("select attachable_id, data_file_path from cms_attachments a where a.attachable_type = 'Cms::AbstractFileBlock'").inject(Hash.new()){|h,v| h[v.attachable_id] = v.data_file_path; h}
       files.map do |file|
         {
             # Handle having a possibly 'null' data_file_name, which might happen if upgrades aren't successful.
@@ -96,7 +97,7 @@ module BcmsKcfinder
             name: file.name ? file.name : "",
             
             size: file.size_in_bytes,
-            path: file.class.eql?(Cms::ImageBlock) ? file.file.data_file_path : file.path,
+            path: paths[file.id],
             mtime: file.updated_at.to_i,
             date: file.created_at.strftime("%m/%d/%Y %I:%M %p"),
             readable: true,
