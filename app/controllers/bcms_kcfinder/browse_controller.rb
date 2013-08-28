@@ -97,7 +97,7 @@ module BcmsKcfinder
             name: file.name ? file.name : "",
             
             size: file.size_in_bytes,
-            path: paths[file.id],
+            path: file.is_a?(Cms::Attachment) || file.is_a?(Cms::AbstractFileBlock) ? paths[file.id] : file.path,
             mtime: file.updated_at.to_i,
             date: file.created_at.strftime("%m/%d/%Y %I:%M %p"),
             readable: true,
