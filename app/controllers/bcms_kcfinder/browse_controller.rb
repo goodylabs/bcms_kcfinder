@@ -103,12 +103,12 @@ module BcmsKcfinder
             path:  file.link_to_path,
             mtime: file.updated_at.to_i,
             date: file.created_at.strftime("%m/%d/%Y %I:%M %p"),
-            readable: true,
-            writeable: true,
-            bigIcon: true,
-            smallIcon: true,
-            thumb: true,
-            smallThumb: false,
+            readable: BcmsKcfinder.config.readable,
+            writeable:  BcmsKcfinder.config.writeable,
+            bigIcon: BcmsKcfinder.config.bigIcon,
+            smallIcon: BcmsKcfinder.config.smallIcon,
+            thumb: BcmsKcfinder.config.thumbnail,
+            smallThumb: BcmsKcfinder.config.smallThumb,
             cms_id: file.id
         }
       end
@@ -118,9 +118,9 @@ module BcmsKcfinder
       section.sections.map do |child|
         {
             name: child.name,
-            readable: true,
-            writable: true,
-            removable: true,
+            readable:  BcmsKcfinder.config.dir_readable,
+            writable:  BcmsKcfinder.config.dir_writeable,
+            removable:  BcmsKcfinder.config.dir_removable,
             hasDirs: !child.child_sections.empty?,
             current: false,
             dirs: child_sections_to_dirs(child)
