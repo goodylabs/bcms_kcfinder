@@ -16,7 +16,7 @@ module BcmsKcfinder
     end
 
     initializer 'bcms_kcfinder.enable' do |app|
-       app.config.cms.ckeditor.configuration_file = "bcms_kcfinder/config"
+       app.config.cms.ckeditor.configuration_file = "bcms_kcfinder/config.js"
     end
   end
 end
