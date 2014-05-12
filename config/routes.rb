@@ -5,5 +5,6 @@ BcmsKcfinder::Engine.routes.draw do
   post "browse/download" => "browse#download"
   post "browse/chDir" => "browse#change_dir"
   post "browse/upload" => "browse#upload"
-  match "browse/:command" => "browse#command"
+  get "browse/:command" => "browse#command"
+  post "browse/:command" => "browse#command"  
 end
