@@ -3,7 +3,7 @@ module BcmsKcfinder
 
     # This API is mostly JSON, so CSRF shouldn't be an issue.
     protect_from_forgery :except => [:download,:upload]
-    
+
     layout 'bcms_kcfinder/application'
     before_filter :set_default_type
     before_filter :determine_current_section, :only=>[:init, :upload, :change_dir]
@@ -41,7 +41,7 @@ module BcmsKcfinder
     def create_new(klass)
       uploaded_file = params[:upload].first
       f = klass.new(:name => uploaded_file.original_filename, :publish_on_save => true)
-      a = f.attachments.build(:parent => @section,
+      a = f.attachments.new(:parent => @section,
                               :data_file_path => uploaded_file.original_filename,
                               :attachment_name => 'file',
                               :data => uploaded_file)

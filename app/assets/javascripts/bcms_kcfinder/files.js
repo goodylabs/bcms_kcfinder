@@ -161,6 +161,7 @@ browser.selectAll = function(e) {
 browser.returnFile = function(file) {
 
     var fileURL = browser.fileUrl(file);
+    fileURL = decodeURIComponent(fileURL);
 
     if (this.opener.CKEditor) {
         this.opener.CKEditor.object.tools.callFunction(this.opener.CKEditor.funcNum, fileURL, '');
@@ -426,7 +427,7 @@ browser.menuFile = function(file, e) {
         });
 
         $('.menu a[href="kcact:pick_thumb"]').click(function() {
-            var path = browser.thumbsURL + '/' + browser.dir + '/' + data.name;
+            var path = '/' + browser.thumbsURL + '?type=' + browser.type + '&lng=' + browser.lang + '&file=' + data.name+ '&dir=' + browser.dir + '&path=/' + data.name;
             browser.returnFile(path);
             browser.hideDialog();
             return false;
@@ -514,7 +515,8 @@ browser.menuFile = function(file, e) {
         var ts = new Date().getTime();
         var showImage = function(data) {
             //url = _.escapeDirs(browser.uploadURL + '/' + browser.dir + '/' + data.name) + '?ts=' + ts,
-            url = _.escapeDirs( data.path) + '?ts=' + ts;
+            //url = _.escapeDirs( data.path) + '?ts=' + ts;
+            url = _.escapeDirs(data.path);
             $('#loading').html(browser.label("Loading image..."));
             $('#loading').css('display', 'inline');
             var img = new Image();
