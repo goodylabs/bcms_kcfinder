@@ -22,7 +22,7 @@
       browser.uploadURL = "bcms_kcfinder/browse";
       browser.thumbsURL = browser.uploadURL + "/thumb";
       browser.opener.CKEditor = {};
-      browser.opener.CKEditor.funcNum = 1;
+      browser.opener.CKEditor.funcNum = '<%= params["CKEditorFuncNum"] %>';
       browser.cms = "";
       // Custom settings for cookies
       _.kuki.domain = "";  // Unsure if these are necessary. Setting only seems to break setting cookies correctly. (i.e. localhost)
